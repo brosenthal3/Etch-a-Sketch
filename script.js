@@ -51,8 +51,8 @@ function addHoverEvent(){
 document.getElementById('reset-btn').onclick= function resetGrid(){
     const divs = document.querySelectorAll('.grid-item');
     divs.forEach((item) => {
-        item.style.opacity = 0;
-        item.setAttribute('data-opacity', 0);
+        item.style.opacity = 0.05;
+        item.setAttribute('data-opacity', 0.05);
     })
 }
 document.getElementById('change-grid-btn').onclick = function createNewGrid(){
