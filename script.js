@@ -1,3 +1,5 @@
+let colors = 'theme';
+
 //creates divs when the page is loaded.
 document.onload = createDivs();
 
@@ -27,6 +29,7 @@ function createDivs(grid = 16){
     }
     
     addHoverEvent();
+    addDivColor();
     console.timeEnd('adding divs');
 }
 
@@ -47,6 +50,17 @@ function addHoverEvent(){
         })
     })
 }
+function addDivColor(){
+    const divs = document.querySelectorAll('.grid-item');
+    console.log(`rgb(${Math.floor(Math.random() * 200)}, ${Math.floor(Math.random() * 250)}, ${Math.floor(Math.random() * 200)})`);
+    divs.forEach((div) => {
+        if(colors == 'theme'){
+            div.style.backgroundColor = '#fd6e43e0';
+        } else {
+            div.style.backgroundColor = `rgb(${Math.floor(Math.random() * 250)}, ${Math.floor(Math.random() * 250)}, ${Math.floor(Math.random() * 250)})`;
+        }
+    });
+}
 
 document.getElementById('reset-btn').onclick= function resetGrid(){
     const divs = document.querySelectorAll('.grid-item');
@@ -66,5 +80,15 @@ document.getElementById('change-grid-btn').onclick = function createNewGrid(){
         }
     }while(Number(newGrid) >= 100 || Number(newGrid) <= 0 || isNaN(Number(newGrid)));
     createDivs(newGrid);
+}
+document.getElementById('toggle-color').onclick= function toggleColor(e){
+    if(e.target.textContent == 'THEME COLOR'){
+        e.target.textContent = 'RANDOM COLORS';
+        colors = 'random';
+    } else if(e.target.textContent == 'RANDOM COLORS'){
+        e.target.textContent = 'THEME COLOR';
+        colors = 'theme';
+    }
+    addDivColor();
 }
 
